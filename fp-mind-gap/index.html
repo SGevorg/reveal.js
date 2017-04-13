@@ -24,8 +24,24 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<section>Ways to Program Things</section>
+					<section>Complex Programs</section>
+					<section>Maintainable vs Wat?</section>
+				</section>
+				<section>
+					<section>Manage Complexity</section>
+					<section>BLA</section>
+					<section>BLA</section>
+				</section>
+				<section>
+
+					<section>
+						MATH STUFF <br><br>
+						When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+					</section>
+				</section>
 			</div>
 		</div>
 
@@ -37,14 +53,23 @@
 			Reveal.initialize({
 				history: true,
 
+				math: {
+					mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+				},
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
 					{ src: '../plugin/markdown/marked.js' },
 					{ src: '../plugin/markdown/markdown.js' },
 					{ src: '../plugin/notes/notes.js', async: true },
+					{ src: '../plugin/math/math.js', async: true },
 					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
 				]
 			});
+		</script>
+
+		<script type="text/x-mathjax-config">
+  		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 		</script>
 	</body>
 </html>
