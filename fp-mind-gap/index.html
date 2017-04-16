@@ -24,23 +24,225 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>
-					<section>Ways to Program Things</section>
-					<section>Complex Programs</section>
-					<section>Maintainable vs Wat?</section>
+				<section data-markdown>
+					<script type="text/template">
+						# Functional Programming
+						### Mind The Gap Between Theory and Practice
+						`(By (Gevorg Soghomonian))`
+					</script>
 				</section>
-				<section>
-					<section>Manage Complexity</section>
-					<section>BLA</section>
-					<section>BLA</section>
-				</section>
-				<section>
 
-					<section>
-						MATH STUFF <br><br>
-						When $a \ne 0$, there are two solutions to \(ax^2 + bx + c = 0\) and they are
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# What is FP?
+						</script>
 					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Why would I care?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# One more new thing to learn... aarrgggh.
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# What gap are you talking about?
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Do we write Javascript?
+							<br/>
+							# Maybe ES6?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Then we do use FP!
+							<br/><br/>
+							# Every day :)
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Basics First
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Pure Functions
+							<br>
+							### Same variable -> same result
+							### Acts like a map
+							### No side effects
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# No Side Effects
+							<br>
+							### No global state changes
+							### Immutable objects
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Recursion
+							<br>
+							### We all know how this works :)
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Anonymous functions (lambda)
+							<br>
+							### Functions as first class citizen
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Functions as data
+							<br>
+							# vs.
+							<br>
+ 							## Functions as Procedures
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Example on Scheme (Lisp)
+							<br>
+							### Basic Data Storage for Scheme
+							### `CONS`, `CAR`, `CDR`  simplified axioms
+							<br>
+							`For any X,Y`
+
+							```lisp
+							(CAR (CONS X Y)) = X
+							```
+							```lisp
+							(CDR (CONS X Y)) = Y
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Alonzo Church's hack
+							### Gerald J. Sussman
+							<br>
+							```lisp
+							(DEFINE (CONS X Y) (LAMBDA (M) (M X Y)))
+							```
+							```lisp
+							(DEFINE (CAR X) (X (LAMBDA (A D) A)))
+							```
+							```lisp
+							(DEFINE (CDR X) (X (LAMBDA (A D) D)))
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Evaluation:
+							<br>
+							```lisp
+							(CAR (CONS 4 5))
+							```
+							```lisp
+							(CAR (LAMBDA (M) (M 4 5)))(CAR (CONS 4, 5))
+							```
+							```lisp
+							(CAR (LAMBDA (M) (M 4 5)))
+							```
+							```lisp
+							((LAMBDA (M) (M 4 5)) (LAMBDA (A D) A))
+							```
+							```lisp
+							((LAMBDA (A D) A) 4 5)
+							```
+							```lisp
+							4
+							```
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## How to Deal with Side Effects?
+							<br>
+							## How to have shared mutable state?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Let's start with a few definitions
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							$a$ - (generic type of variables)
+							<br><br>
+							$x:a$ - (variable $x$ of type $a$)
+							<br><br>
+							$f:a \to a$ - (function that maps variable of type $a$ to a value of type $a$)
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Compositionality
+							<br/>
+							Let's discuss two functions $f$ and $g$
+							<br/>
+							$$f:a \to a$$
+							$$g:a \to a$$
+							<br>
+							Denote
+							<br>
+							$f \ \ a$ - (function $f$ applied to variable of type $a$)
+						</script>
+					</section>
+					<!-- <section data-markdown>
+						<script type="text/template">
+							## Then we do use FP!
+							<br/><br/>
+							# Every day :)
+						</script>
+					</section> -->
+				</section>
+
+				<!-- <section data-markdown>
+					<script type="text/template">
+						Javascript code
+						--
+
+						```javascript
+							var s = "JavaScript syntax highlighting";
+							alert(s);
+						```
+					</script>
+				</section> -->
+
+				<!-- <section data-markdown>
+					<script type="text/template">
+						## MATH STUFF
+
+						When $a \ne 0$, there are two solutions to $\(ax^2 + bx + c = 0\)$ and they are
+	$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+					</script>
+
+				</section> -->
 				</section>
 			</div>
 		</div>
