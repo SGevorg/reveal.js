@@ -197,40 +197,176 @@
 							$x:a$ - (variable $x$ of type $a$)
 							<br><br>
 							$f:a \to a$ - (function that maps variable of type $a$ to a value of type $a$)
+							<br>
+							$f \ \ a$ - (function $f$ applied to variable of type $a$)
 						</script>
 					</section>
 					<section data-markdown>
 						<script type="text/template">
-							# Compositionality
+							## Compositionality
 							<br/>
 							Let's discuss two functions $f$ and $g$
 							<br/>
 							$$f:a \to a$$
 							$$g:a \to a$$
 							<br>
-							Denote
-							<br>
-							$f \ \ a$ - (function $f$ applied to variable of type $a$)
+							$f \circ g = f \ \ (g \ \ a)$ - (composition of function $f$ and $g$)
+							<br><br>
+							```javascript
+							// it's the same as this. Apply g, then apply f on a
+							f(g(a))
+							```
 						</script>
 					</section>
-					<!-- <section data-markdown>
+					<section data-markdown>
 						<script type="text/template">
-							## Then we do use FP!
-							<br/><br/>
-							# Every day :)
+							## Composition operator is
+							<br/>
+							## a fundamental "glue" to create complexity
+							<br/>
+							## in a manageable way
 						</script>
-					</section> -->
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Example of a different operation
+							<br>
+							Set: Integers from 0 to 9
+							<br><br>
+							Operation:
+							<br>
+							$x \oplus y = (x + y) % 10$ - modulus over 10 operation
+							<br><br>
+							(AKA. Cyclic Abelian Group)
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## MONOID
+							<br/><br/>
+							Set that is closed under operation $\oplus$ which satisfies the following rules:
+							<br>
+							1. $x \oplus (y \oplus z) = (x \oplus y) \oplus z$ - (associativity)
+							<br><br>
+							2. $\exists \ I \ $  such that  $ \ x \oplus I = I \oplus x \ $ - (identity)
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## We can say that
+							<br>
+							1. Functions of type $ \ a \to a \ $ under operation $ \ \circ \ $ are monoid
+							<br><br>
+							2. Integers of interval $ \ 0...9 \ $ under operation $ \ \oplus \ $ are monoid
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Let's  Observe THe following enhanced functions
+							<br>
+							$f: a \to Ma \ $
+							<br>
+							$g: a \to Ma \ $
+							<br>
+							Where $ \ Ma \ $ is a modification over $ \ a \ $
+							<br><br>
+							$Ma$ models the side-effect, or a constructor
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## How to enable Monoid like functionality
+							## For enhanced functions
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Define an anonymous pure function
+							<br>
+							$$\lambda \  a \ \to (...)$$
+							<br>
+							Which takes variable of type a and does smth with it
+							<br>
+							And returns a value
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Define the following functions
+							<br>
+							$\lambda \ a \to (f \ \ a) \ \ $  (Which will return $ \ Ma \ $)
+							<br>
+							$\lambda \ a \to (g \ \ a) \ \ $  (Which will return $ \ Ma \ $)
+							<br><br>
+							These are the same functions as $ \ f \ $ and $ \ g \ $
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							$\lambda \ a \to (f \ \ a) \ \ \ \ \ \ \ \ \ \ \ \ \ \lambda \ a \to (g \ \ a) \ $
+							<br><br>
+							$\lambda \ a \to (f \ \ a) \ \ >>= \ \ \lambda \ a \to (g \ \ a) \ $
+							<br><br>
+							Isolate the tale as follows
+							<br><br>
+							$\lambda \ a \to \ [ \ (f \ \ a) \ \ >>= \ \ \lambda \ a \to (g \ \ a) \ ]$
+							<br><br>
+							Where $ \ >>= \ $ is called Bind Operation
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+								# Bind
+								1. Takes parameters of type $ \ Ma \ $ and $ \ a \to Ma \ $
+								<br><br>
+								### Or
+								2. Is a method of object $ \ Ma \ $ and takes parameters of type $ \ Ma \ $ and $ \ a \to Ma \ $
+								<br><br>
+								And returns value of type $ \ Ma \ $
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Monad
+							<br>
+							1. Functions of type $ \ a \to Ma \ $
+							<br><br>
+							2. $ \ M \ $ modification of the data
+							<br><br>
+							3. $ \ >>= \ $ Bind operation
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Monads also Applicable for
+							<br>
+							$f: a \to Mb \ $
+						 <br>
+						 $g: b \to Mc \ $
+						 <br><br>
+						 Where: $ \ \ >>= \ \in \ (Mb, \ (b \to Mc)) \to Mc $
+						 <br>
+						 as
+						 <br>
+						 $\lambda \ a \to \ [ \ (f \ \ a) \ \ >>= \ \ \lambda \ b \to (g \ \ b) \ ]$
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## What's the benefit of Monads?
+							<br>
+							1. Functions of type $ \ a \to Ma \ $ that act like Monoids under operation Bind
+							<br><br>
+							2. Therefore composed together to create complexity
+							<br><br>
+							### All you have to do is design Bind
+						</script>
+					</section>
 				</section>
 
 				<!-- <section data-markdown>
 					<script type="text/template">
-						Javascript code
-						--
 
-						```javascript
-							var s = "JavaScript syntax highlighting";
-							alert(s);
-						```
 					</script>
 				</section> -->
 
