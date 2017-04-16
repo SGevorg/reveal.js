@@ -24,6 +24,8 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
+				<!-- Title slide -->
 				<section data-markdown>
 					<script type="text/template">
 						# Functional Programming
@@ -32,6 +34,7 @@
 					</script>
 				</section>
 
+				<!-- Skepticism slides -->
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -55,6 +58,7 @@
 					</section>
 				</section>
 
+				<!-- Answer to skepticisms slides -->
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -72,6 +76,7 @@
 					</section>
 				</section>
 
+				<!-- FP Basics -->
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -177,6 +182,7 @@
 					</section>
 				</section>
 
+				<!-- Monad theory -->
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -364,11 +370,174 @@
 					</section>
 				</section>
 
-				<!-- <section data-markdown>
-					<script type="text/template">
+				<!-- Skepticism 2.0 -->
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# So what ?
+						</script>
+					</section>
+				</section>
 
-					</script>
-				</section> -->
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# How do you deal with nulls in your programs ?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Null Pointer Exception ?
+							<br>
+							## The Billion Dollar Mistake
+							<br>
+							~Tony Hoare
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Maybe monad
+							<br>
+							### AKA Option Monad
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Takes Only two values
+							`Maybe.Just` $ \ \ \ \ \in \ \ \ \ \ $ `a -> Maybe a`
+							<br>
+							`Maybe.Nothing` $ \ \ \ \ \in \ \ \ \ \ $ `() -> Maybe a`
+							***
+							### Binds with
+							`maybe.chain` $ \ \in  \ $
+							<br>
+							`Maybe a ~> (a -> Maybe b) -> Maybe b`
+							***
+							### data Retrieved with
+							`maybe.getOrElse` $ \ \in \ $ `Maybe a ~> a -> a`
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Rambda-fantasy
+							```javascript
+							var a = "my special value"
+							var b = null
+
+							// instead of
+							if (b !== null) {
+								console.log(b.length)
+							} else {
+								console.log(0)
+							}
+
+							// We go:
+							console.log(Maybe(b).getOrElse("").length) // prints 0
+							// And for a:
+							console.log(Maybe(a).getOrElse("").length) // prints 16
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Rambda-fantasy
+
+							```javascript
+							// instead of
+							if (b !== null) {
+								console.log(b.split(" "))
+							} else {
+								console.log([])
+							}
+
+							// We go:
+							val splitA = Maybe(a).chain(a => a.split(" "))
+							// this is Just(["my", "special", "value"])
+							val splitB = Maybe(b).chain(b => b.split(" "))
+							// this is Nothing
+
+							// take any of splitA or splitB and use like this:
+							console.log(splitB.getOrElse([]).length) // print the count
+							```
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# How to deal with asynchronous operations?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+								# Promises
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+								# Here go examples with promises and discussion
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Again, why care about fp?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+								# Concept of Time
+								# &
+								# Handling of Complexity
+						</script>
+					</section>
+				</section>
+
+					<section>
+						<section data-markdown>
+							<script type="text/template">
+								# Time
+							</script>
+						</section>
+						<section data-markdown>
+							<script type="text/template">
+								About assignment, race condition, multicore systems, scalable systems and how time matters in programs
+								### phylosophical
+							</script>
+						</section>
+					</section>
+
+					<section>
+						<section data-markdown>
+							<script type="text/template">
+								# Complexity
+							</script>
+						</section>
+						<section data-markdown>
+							<script type="text/template">
+								About layers and layers of complexity that can be built from simple elements
+								## composition
+							</script>
+						</section>
+						<section data-markdown>
+							<script type="text/template">
+								## Example on how genes work, their complexity and how nature thinks of all of this.
+							</script>
+						</section>
+					</section>
+
+					<section>
+						<section data-markdown>
+							<script type="text/template">
+								# Thanks
+							</script>
+						</section>
+					</section>
+
+				</section>
 
 				<!-- <section data-markdown>
 					<script type="text/template">
