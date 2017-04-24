@@ -74,39 +74,147 @@
 							# Every day :)
 						</script>
 					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# But let's properly understand what is it
+						</script>
+					</section>
 				</section>
 
 				<!-- FP Basics -->
 				<section>
 					<section data-markdown>
 						<script type="text/template">
-							# Basics First
+							# Basics First ;)
 						</script>
 					</section>
+				</section>
+
+				<section>
 					<section data-markdown>
 						<script type="text/template">
 							# Pure Functions
 							<br>
-							### Same variable -> same result
-							### Acts like a map
-							### No side effects
+							### Same variable $ \ \to \ $ always same result
+							<br>
+							### Can Be replaced by map or a value
+
+							### substitution computational model
 						</script>
 					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Pure Function example
+							```javascript
+								// Factorial function
+								function factorial(n) {
+									return n * factorial(n - 1)
+								}
+
+								// Return list of properties
+								function cherryPick(segments) {
+									return segments.map(segment =>
+										_.pick(segment, ['displayName', 'color']))
+								}
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Impure Function example
+							```javascript
+								// shared mutable state
+								var numberOfArguments = 4
+
+								function increaseArguments(a) {
+									numberOfArguments++;
+									return numberOfArguments + a;
+								}
+							```
+							```javascript
+								=> increaseArguments(2)
+								7
+
+								=> increaseArguments(2)
+								8
+							```
+						</script>
+					</section>
+				</section>
+
+				<section>
 					<section data-markdown>
 						<script type="text/template">
 							# No Side Effects
 							<br>
-							### No global state changes
-							### Immutable objects
+							### No global state mutations
+							<br>
+							### violates the substitution
 						</script>
 					</section>
 					<section data-markdown>
 						<script type="text/template">
-							# Recursion
-							<br>
-							### We all know how this works :)
+							# Side Effect Example
+
+							```javascript
+								var myLambda = (listOfValues) => {
+									var overallAge = listOfValues.reduce((acc, cur) => {
+										return acc + cur.age;
+									});
+
+									// Guess what did I just do?
+									console.log('Did I compute correctly? ' + overallAge);
+									return overallAge;
+								};
+							```
 						</script>
 					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Or this one
+
+							```javascript
+
+								// Where is the side effect ????
+
+								function saveUsers(users) {
+									myDatabaseConnection.save(users);
+								}
+
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Whop, there it is
+
+							```javascript
+								function saveUsers(users) {
+									// The side effect!!
+									myKafkaProducer.produce('my-user-topic', users)
+									myDatabaseConnection.save(users);
+								}
+							```
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# What's wrong with side effects?
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Recursion
+							<br>
+							## We all know how this works, right? :)
+						</script>
+					</section>
+				</section>
+
+				<section>
 					<section data-markdown>
 						<script type="text/template">
 							# Anonymous functions (lambda)
@@ -181,6 +289,92 @@
 						</script>
 					</section>
 				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Great, but what's the point?
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Complexity
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## primitives
+							<br>
+							## means of combination
+							<br>
+							## means of abstraction
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## implement program
+							# vs
+							## embed program
+							## metalinguistic abstractions
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Layered systems / abstractions
+							# vs
+							## hierarchical, tree-like structures
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## `vector arithmetic`
+							***
+							## `rational number arithmetic`
+							***
+							### `Representation of rational numbers`
+							***
+							### `basic data representation in language`
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Time
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# How do race conditions happen?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## What about Resource distribution?
+							<br>
+							## multi-core programming
+							<br>
+							## scalable systems
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Assignment operator
+							<br>
+							## substitution principle useless
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Functional programs make this discussion obsolete
+						</script>
+					</section>
+				</section>
+
 
 				<!-- Monad theory -->
 				<section>
@@ -370,15 +564,6 @@
 					</section>
 				</section>
 
-				<!-- Skepticism 2.0 -->
-				<section>
-					<section data-markdown>
-						<script type="text/template">
-							# So what ?
-						</script>
-					</section>
-				</section>
-
 				<section>
 					<section data-markdown>
 						<script type="text/template">
@@ -476,7 +661,25 @@
 					</section>
 					<section data-markdown>
 						<script type="text/template">
-								# Here go examples with promises and discussion
+								# Takes Value `Promise`
+								***
+								## binds with
+								`promise.then` $ \ \in  \ $
+								<br>
+								`Promise ~> (res1 -> Promise res2) -> Promise res2`
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+								```javascript
+									new Promise((resolve, reject) => {
+										resolve(val);
+									}).then(val => {
+										return retrieveFromDbWith(val);
+									}).then(returnedFromDB => {
+										return pushToAnotherService(returnedFromDB);
+									})
+								```
 						</script>
 					</section>
 				</section>
@@ -484,60 +687,12 @@
 				<section>
 					<section data-markdown>
 						<script type="text/template">
-							# Again, why care about fp?
-						</script>
-					</section>
-					<section data-markdown>
-						<script type="text/template">
-								# Concept of Time
-								# &
-								# Handling of Complexity
+							# Thanks
 						</script>
 					</section>
 				</section>
 
-					<section>
-						<section data-markdown>
-							<script type="text/template">
-								# Time
-							</script>
-						</section>
-						<section data-markdown>
-							<script type="text/template">
-								About assignment, race condition, multicore systems, scalable systems and how time matters in programs
-								### phylosophical
-							</script>
-						</section>
-					</section>
-
-					<section>
-						<section data-markdown>
-							<script type="text/template">
-								# Complexity
-							</script>
-						</section>
-						<section data-markdown>
-							<script type="text/template">
-								About layers and layers of complexity that can be built from simple elements
-								## composition
-							</script>
-						</section>
-						<section data-markdown>
-							<script type="text/template">
-								## Example on how genes work, their complexity and how nature thinks of all of this.
-							</script>
-						</section>
-					</section>
-
-					<section>
-						<section data-markdown>
-							<script type="text/template">
-								# Thanks
-							</script>
-						</section>
-					</section>
-
-				</section>
+			</section>
 
 				<!-- <section data-markdown>
 					<script type="text/template">
@@ -548,35 +703,35 @@
 					</script>
 
 				</section> -->
-				</section>
-			</div>
+			</section>
 		</div>
+	</div>
 
-		<script src="../lib/js/head.min.js"></script>
-		<script src="../js/reveal.js"></script>
+	<script src="../lib/js/head.min.js"></script>
+	<script src="../js/reveal.js"></script>
 
-		<script>
-			// More info https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				history: true,
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			history: true,
 
-				math: {
-					mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
-					config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
-				},
-				// More info https://github.com/hakimel/reveal.js#dependencies
-				dependencies: [
-					{ src: '../plugin/markdown/marked.js' },
-					{ src: '../plugin/markdown/markdown.js' },
-					{ src: '../plugin/notes/notes.js', async: true },
-					{ src: '../plugin/math/math.js', async: true },
-					{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
+			math: {
+				mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+				config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			},
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+				{ src: '../plugin/markdown/marked.js' },
+				{ src: '../plugin/markdown/markdown.js' },
+				{ src: '../plugin/notes/notes.js', async: true },
+				{ src: '../plugin/math/math.js', async: true },
+				{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
 
-		<script type="text/x-mathjax-config">
-  		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
-		</script>
-	</body>
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+</body>
 </html>
