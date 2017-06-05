@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>(λ)</title>
+
+		<link rel="stylesheet" href="../css/reveal.css">
+		<link rel="stylesheet" href="../css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="../lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../css/print/pdf.css' : '../css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+
+				<!-- Title slide -->
+				<section data-markdown>
+					<script type="text/template">
+						# Metalinguistic Abstractions
+						### Managing Program Complexity
+						`(By (Gevorg Soghomonian))`
+					</script>
+				</section>
+
+				<!-- Skepticism slides -->
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# How things get bad in software?
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							### Stacking code on top of code
+							<br/>
+							### New people join the team
+							<br/>
+							### Requirements change over time
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Hard to Cope with this?
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# We use different languages in different levels
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Machine Language to represent data on machine level
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Higher level language to represents higher level concepts in terms of machine language
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# And so on ...
+						</script>
+					</section>
+				</section>
+
+				<!-- Answer to skepticisms slides -->
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Three main features of languages
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Primitive Types
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Means of Combination
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Means of Abstraction
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Metalinguistic Abstractions
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Build languages to express programs with
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Embed Programs
+							## vs
+							# Implement Programs
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							# Use Language Features
+							# Wherever Possible
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Code time!!
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Impact on Teams
+							<br>
+							## Impact on velocity
+							<br>
+							## complexity management
+						</script>
+					</section>
+				</section>
+
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							# Thanks
+						</script>
+					</section>
+				</section>
+
+			</section>
+
+				<!-- <section data-markdown>
+					<script type="text/template">
+						## MATH STUFF
+
+						When $a \ne 0$, there are two solutions to $\(ax^2 + bx + c = 0\)$ and they are
+	$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}.$$
+					</script>
+
+				</section> -->
+			</section>
+		</div>
+	</div>
+
+	<script src="../lib/js/head.min.js"></script>
+	<script src="../js/reveal.js"></script>
+
+	<script>
+		// More info https://github.com/hakimel/reveal.js#configuration
+		Reveal.initialize({
+			history: true,
+
+			math: {
+				mathjax: 'https://cdn.mathjax.org/mathjax/latest/MathJax.js',
+				config: 'TeX-AMS_HTML-full'  // See http://docs.mathjax.org/en/latest/config-files.html
+			},
+			// More info https://github.com/hakimel/reveal.js#dependencies
+			dependencies: [
+				{ src: '../plugin/markdown/marked.js' },
+				{ src: '../plugin/markdown/markdown.js' },
+				{ src: '../plugin/notes/notes.js', async: true },
+				{ src: '../plugin/math/math.js', async: true },
+				{ src: '../plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+			]
+		});
+	</script>
+
+	<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+	</script>
+</body>
+</html>
